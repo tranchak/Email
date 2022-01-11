@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hello, Stas!!!</h1>
+<div id="root"></div>
+<script>
+
+    let div = document.getElementById('root');
+    fetch("http://127.0.0.1:8000/presente/").then(response => response.json()).then(massage => {
+        console.log(massage.message)
+        div.innerHTML = `${massage.message}`})
+
+</script>
+
+</body>
+</html>
