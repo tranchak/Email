@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from api.views import get_presente, all_shop
+from api.views import get_presente, all_shop, all_mag
 
 router = routers.SimpleRouter()
 router.register(r're_present', get_presente, basename='re_present')
@@ -24,5 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('presente/', get_presente, name='presente'),
     path('shop/<int:id>', all_shop, name='all_shop'),
+    path('mag/',all_mag),
+    # path('prod/',)
 
 ]

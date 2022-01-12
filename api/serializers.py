@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Present, Magaz
+from .models import Present, Magaz, Product
 
 
 class PresentSerializer(serializers.ModelSerializer):
@@ -13,8 +13,15 @@ class SerialazerPresent(serializers.Serializer):
     pass
 
 
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['name']
+
+
 class ShopSerializer(serializers.ModelSerializer):
-    prod = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
+    prod = ProductSerializer(many=True)
+
     class Meta:
         model = Magaz
         fields = ['name', 'prod']
