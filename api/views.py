@@ -32,24 +32,16 @@ def all_mag(request):
     mag = Magaz.objects.all()
     serialise = ShopSerializer(mag, many=True)
     if request.method == 'POST':
-        # print(request.data)
-        serialise_shop = ShopSerializer(data=request.data)
-        print(serialise_shop)
-        # serialise_product = ProductSerializer(data=request.data.get('prod'))
-        if serialise_shop.is_valid():
-            shop = serialise_shop.validated_data.get('name')
-            prot = serialise_shop.validated_data.get('prod')
-            # print(shop, '1--')
-            print(prot, '2--')
-            if Magaz.objects.filter(name=shop).exists():
-                return Response({'massage': 'ERRRRRROR. Ошибка есть такой магазин'})
-            else:
-                Magaz.objects.create(name=shop)
-                z = Magaz.objects.get(name=shop)
-                print(z)
-                for p in prot:
-                    Product.objects.create(name=p, magaz_id=z.id)
-                    print(p)
-            return Response(serialise.data)
-        return Response(serialise_shop.errors)
-    return Response(serialise.data)
+        serialise = ShopSerializer(data=request.data)
+        if serialise.is_valid():
+            serialise.save()
+            return Response({serialise.data})
+    else:
+        return Response(serialise.data)
+
+
+@api_view
+def all_product(request):
+    prod = Product.objects.all()
+    serialiser = ProductSerializer(prod, many=True)
+    return Response(serialiser.data)

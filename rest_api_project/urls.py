@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 from api.views import get_presente, all_shop, all_mag
+from stas_class.views import ZawodList, CreateZawod
 
 router = routers.SimpleRouter()
 router.register(r're_present', get_presente, basename='re_present')
@@ -25,6 +26,8 @@ urlpatterns = [
     path('presente/', get_presente, name='presente'),
     path('shop/<int:id>', all_shop, name='all_shop'),
     path('mag/',all_mag),
+    path('zawod/', ZawodList.as_view()),
+    path('zaw/', CreateZawod.as_view())
     # path('prod/',)
 
 ]

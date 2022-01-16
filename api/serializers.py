@@ -25,4 +25,10 @@ class ShopSerializer(serializers.ModelSerializer):
     class Meta:
         model = Magaz
         fields = ['name', 'prod']
-        depth = 1
+
+    def create(self, validated_data):
+        proda = validated_data.pop('prod')
+        magazins = Magaz.objects.create(**validated_data)
+        for i in proda:
+            Product.objects.create(magazins=magazins, **i)
+        return magazins
