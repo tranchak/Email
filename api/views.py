@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from rest_framework import viewsets
 from rest_framework.decorators import api_view
+from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
 from .models import Present, Magaz, Product
@@ -45,3 +47,16 @@ def all_product(request):
     prod = Product.objects.all()
     serialiser = ProductSerializer(prod, many=True)
     return Response(serialiser.data)
+
+
+class Magazik(viewsets.ViewSet):
+    def list(self, request):
+        queryset = Magaz.objects.all()
+        serialise = ShopSerializer(queryset, many=True)
+        return Response(serialise.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = Magaz.objects.all()
+        zaw_ok = get_object_or_404(queryset, pk=pk)
+        serialise = ShopSerializer(zaw_ok)
+        return Response(serialise.data)

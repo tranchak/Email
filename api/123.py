@@ -7,6 +7,36 @@
 # https://tinyurl.com/yybc7w7x
 # z = z = input().split()
 
-z = [int(i) for i in input().split()]
+# link = ['Ipona', 'Master Sword']
+# alin = link
+# link[0] = 'Zelda'
+# print(link)
+# > ['Zelda', 'Master Sword']
+#
+# print(alin)
+# > ['Zelda', 'Master Sword']
 
-print(z)
+# a = ['a', 'b', 'c']
+# b = a
+# a[0] = 0
+# b[-1] = 11
+# print(a)
+# print(b)
+
+
+
+
+
+def stas(z):
+    for i in z.split(' '):
+        yield i
+
+s = stas('Итератор это объект у которого есть метод next()')
+print(next(s))
+print(next(s))
+print(next(s))
+print(next(s))
+print(next(s))
+print(next(s))
+print(next(s))
+print(next(s))

@@ -16,18 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from api.views import get_presente, all_shop, all_mag
-from stas_class.views import ZawodList, CreateZawod
+from api.views import get_presente, all_shop, all_mag, Magazik
+from stas_class.views import ZawodList, CreateZawod, ZawodDetail
 
 router = routers.SimpleRouter()
-router.register(r're_present', get_presente, basename='re_present')
+router.register(r'zawod', ZawodDetail, basename='zaw')
+router.register(r'maga', Magazik, basename='magnum')
+urlpat = router.urls
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('presente/', get_presente, name='presente'),
-    path('shop/<int:id>', all_shop, name='all_shop'),
-    path('mag/',all_mag),
-    path('zawod/', ZawodList.as_view()),
-    path('zaw/', CreateZawod.as_view())
+    # path('presente/', get_presente, name='presente'),
+    # path('shop/<int:id>', all_shop, name='all_shop'),
+    # path('mag/',all_mag),
+    # path('zawod/', ZawodList.as_view()),
+    # path('zaw/', CreateZawod.as_view())
     # path('prod/',)
-
+    *urlpat,
 ]
