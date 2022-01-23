@@ -6,6 +6,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, get_object_or_40
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from api.models import Magaz
 from .models import Zawod
 from .serializers import ZawodSerialiser
 
@@ -36,8 +37,9 @@ class CreateZawod(ListAPIView):
 
 
 class ZawodDetail(viewsets.ViewSet):
+    queryset = Zawod.objects.all()
     def list(self, request):
-        queryset = Zawod.objects.all()
+        queryset = Zawod.objects.all() #filter(name='МАЗ')
         serialise = ZawodSerialiser(queryset, many=True)
         return Response(serialise.data)
 
@@ -47,3 +49,6 @@ class ZawodDetail(viewsets.ViewSet):
         serialise = ZawodSerialiser(zaw_ok)
         return Response(serialise.data)
 
+class StartViewSet(viewsets.ModelViewSet):
+    queryset = Zawod.objects.all()
+    serializer_class = ZawodSerialiser

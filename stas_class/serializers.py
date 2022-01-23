@@ -6,5 +6,5 @@ from .models import Zawod
 class ZawodSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Zawod
-        fields = '__all__'
-        depth = 1
+        fields = ['name', 'address']
+        # depth = 1
