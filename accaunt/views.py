@@ -26,6 +26,7 @@ class ApiUserRegistartionView(APIView):
 
 
 
+
     def get(self, request):
         user = User.objects.all()
         serializer = UserRegisterationsSerializer(user, many=True)
