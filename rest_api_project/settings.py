@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'api',
     'stas_class',
+    'react_django',
 ]
 
 MIDDLEWARE = [
