@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 from api.views import get_presente, all_shop, all_mag, Magazik
+from react_django.views import CarViewSet
 from stas_class.views import ZawodList, CreateZawod, ZawodDetail, StartViewSet
 
 router = routers.SimpleRouter()
@@ -24,10 +25,12 @@ router.register(r'zawod', ZawodDetail)
 router.register(r'maga', Magazik, basename='magaz')
 router.register(r'start', StartViewSet)
 urlpat = router.urls
+router.register(r'car', CarViewSet, basename='car')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accaunt.urls')),
+    # path('', include('react_gjango.urls')),
     # path('presente/', get_presente, name='presente'),
     # path('shop/<int:id>', all_shop, name='all_shop'),
     # path('mag/',all_mag),
@@ -36,3 +39,4 @@ urlpatterns = [
     # path('prod/',)
     *urlpat,
 ]
+urlpatterns+=router.urls
